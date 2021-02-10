@@ -1,0 +1,20 @@
+.sign-in {
+  @apply bg-green-800 px-8 py-2 rounded text-white
+  font-semibold focus:outline-none transition ease-in duration-500 focus:bg-green-200 hover:bg-green-300 capitalize;
+}
+
+@tailwind base;
+
+/* Your own custom base styles */
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Your own custom component styles */
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+/* Your own custom utilities */
