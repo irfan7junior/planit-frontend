@@ -41,7 +41,7 @@ const Create: React.FC<ICreate> = ({
       title: '',
     },
     onSubmit: async (values) => {
-      refetch()
+      await refetch()
       formik.resetForm()
       await refetchProjects()
       setHiddenCreate(true)
