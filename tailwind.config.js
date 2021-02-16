@@ -1,8 +1,18 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        langar: ['Langar', 'cursive'],
+        pacifico: ['Pacifico', 'cursive'],
+        roboto: ['Roboto', 'sans-serif'],
+      }
+    }
   },
-  variants: {},
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+    }
+  },
   plugins: [],
   purge: {
     // Filenames to scan for classes

@@ -12,6 +12,8 @@
     "autoprefixer": "10.x",
     "axios": "^0.21.1",
     "cross-env": "7.x",
+    "font-awesome": "^4.7.0",
+    "formik": "^2.2.6",
     "npm-run-all": "4.x",
     "postcss": "8.x",
     "postcss-cli": "8.x",
@@ -22,7 +24,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "tailwindcss": "2.x",
-    "typescript": "4.x"
+    "typescript": "4.x",
+    "yup": "^0.32.8"
   },
   "scripts": {
     "start": "run-p watch:css react-scripts:start",
@@ -50,6 +53,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.7"
+    "@testing-library/react-hooks": "^5.0.3",
+    "@types/react-router-dom": "^5.1.7",
+    "react-test-renderer": "^17.0.1"
   }
 }

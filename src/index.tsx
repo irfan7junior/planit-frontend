@@ -1,4 +1,4 @@
-import axios, { AxiosStatic } from 'axios'
+import axios from 'axios'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -6,6 +6,8 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import App from './App'
 import { AppProvider } from './context'
 import * as serviceWorker from './serviceWorker'
+import 'font-awesome/css/font-awesome.min.css'
+
 import './styles/index.css'
 ;(window as any).axios = axios
 

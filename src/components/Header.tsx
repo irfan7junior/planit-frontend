@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useQuery } from 'react-query'
+import { Link } from 'react-router-dom'
 import logo from 'src/assets/logo.svg'
 import { AppContext } from 'src/context'
 import { baxios } from 'src/utils/api_axios'
@@ -19,36 +20,48 @@ const Header: React.FC<IHeader> = ({}) => {
     dispatch({ type: 'SET_USER', payload: data })
   }, [dispatch, data])
 
-  const loginButton = () => {
+  const blogsButton = () => {
     return (
-      <button className="bg-purple-300 rounded hover:bg-purple-400 h-1/2 p-4 flex text-white">
+      <div className="flex">
         <a
-          href={`${process.env.REACT_APP_API}/auth/github`}
-          className="self-center"
+          href={`https://blog.irfan7junior.in`}
+          className="btn-green"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Log In
+          Blogs
         </a>
-      </button>
+        <a
+          href={`https://irfan7junior.in/resume`}
+          className="btn-green"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Resume
+        </a>
+      </div>
     )
   }
 
   const logoutButton = () => {
     return (
-      <button className="bg-purple-300 rounded hover:bg-purple-400 h-1/2 p-4 flex text-white">
-        <a href={`${process.env.REACT_APP_API}/logout`} className="self-center">
-          Log Out
-        </a>
-      </button>
+      <a href={`${process.env.REACT_APP_API}/logout`} className="btn-yellow">
+        Log Out
+      </a>
     )
   }
 
   return (
-    <header className="bg-black mb-4 flex justify-between">
-      <div className="w-1/3 md:w-1/4">
-        <img src={logo} alt="logo" className="" />
+    <header className="mb-4 max-w-xl self-center m-1 rounded-xl p-1 flex justify-between border-gray-400 border-2">
+      <div className="w-1/3 md:w-1/4 flex items-center">
+        <Link to="/">
+          <button className="focus:outline-none hover:bg-green-700 p-1 active:bg-red-400 rounded">
+            <img src={logo} alt="logo" className="rounded-xl" />
+          </button>
+        </Link>
       </div>
       <div className="flex-grow flex justify-end items-center mr-2">
-        {user?.authenticated ? logoutButton() : loginButton()}
+        {user?.authenticated ? logoutButton() : blogsButton()}
       </div>
     </header>
   )
