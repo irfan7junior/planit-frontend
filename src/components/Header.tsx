@@ -12,7 +12,7 @@ const fetchUser = async () => {
   return response.data
 }
 
-const Header: React.FC<IHeader> = ({}) => {
+const Header: React.FC<IHeader> = () => {
   const { data } = useQuery('FETCH_USER', fetchUser)
   const { dispatch, user } = useContext(AppContext)
 

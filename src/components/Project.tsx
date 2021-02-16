@@ -7,6 +7,7 @@ import Loading from './Loading'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import Snackbar from './Snackbar'
+import { sleep } from '../utils/common'
 
 export interface IProject {}
 
@@ -26,7 +27,7 @@ const getProject: QueryFunction<ProjectGetResponse> = async ({ queryKey }) => {
   return response.data
 }
 
-const Project: React.FC<IProject> = ({}) => {
+const Project: React.FC<IProject> = () => {
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -51,6 +52,7 @@ const Project: React.FC<IProject> = ({}) => {
     color: '',
     text: '',
   })
+  const [isLoading, setIsLoading] = useState(false)
 
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -92,6 +94,9 @@ const Project: React.FC<IProject> = ({}) => {
       inputRef.current?.focus()
     }
   }, [editMode])
+
+  if (isLoading) return <Loading />
+  if (getProjectQuery.isFetching) return <Loading />
 
   const handleChangeTitle = async () => {
     if (formik.errors.title) return
@@ -153,8 +158,6 @@ const Project: React.FC<IProject> = ({}) => {
     setEditModes(editModesObject)
   }
 
-  if (getProjectQuery.isLoading || !project) return <Loading />
-
   const handleEditTask = async (id: string) => {
     if (formik.errors.edittaskdescription) return
     await baxios.put('/todos/' + id, {
@@ -180,9 +183,11 @@ const Project: React.FC<IProject> = ({}) => {
   }
 
   const handleExportGists = async () => {
+    setIsLoading(true)
     const response = await baxios.post<{ error: boolean; message: string }>(
       '/secret/gists/' + id
     )
+    setIsLoading(false)
 
     if (!response.data.error) {
       setSnackbar({
@@ -206,6 +211,8 @@ const Project: React.FC<IProject> = ({}) => {
       })
     }, 4000)
   }
+
+  if (getProjectQuery.isLoading || !project) return <Loading />
 
   const titleOrInput = () => {
     if (!editMode)
@@ -282,8 +289,8 @@ const Project: React.FC<IProject> = ({}) => {
         </li>
       )
     return (
-      <>
-        <li key={todo._id} className=" flex my-1">
+      <div key={todo._id}>
+        <li key={todo._id} className="flex my-1">
           <div className="w-2/5 min-h-full">
             <input
               type="text"
@@ -333,9 +340,11 @@ const Project: React.FC<IProject> = ({}) => {
           {formik.touched.edittaskdescription &&
             formik.errors.edittaskdescription}
         </div>
-      </>
+      </div>
     )
   }
+
+  console.log(snackbar.color)
 
   return (
     <div className="flex flex-col place-items-center m-2 sm:m-0 w-full sm:w-2/3 max-w-3xl ">

@@ -8,7 +8,7 @@ import Project from './components/Project'
 
 interface IApp {}
 
-const App: React.FC<IApp> = React.memo(({}) => {
+const App: React.FC<IApp> = React.memo(() => {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">

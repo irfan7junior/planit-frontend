@@ -9,6 +9,7 @@ import {
 } from 'react-query'
 import { baxios } from 'src/utils/api_axios'
 import { ProjectCreateResponse } from 'src/@types/response'
+import Loading from './Loading'
 
 export interface ICreate {
   hiddenCreate: boolean
@@ -27,7 +28,6 @@ const postProject: QueryFunction = async (data) => {
   const response = await baxios.post('/projects', {
     title,
   })
-  console.log(response.data)
   return response.data
 }
 
@@ -57,6 +57,8 @@ const Create: React.FC<ICreate> = ({
   )
 
   if (hiddenCreate) return null
+
+  if (isLoading) return <Loading />
 
   return (
     <div className="fixed top-0 left-0 h-full w-full bg-purple-500 z-50 flex justify-center items-center">

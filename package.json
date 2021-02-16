@@ -30,6 +30,7 @@
   "scripts": {
     "start": "run-p watch:css react-scripts:start",
     "build": "CI='' run-s build:css react-scripts:build",
+    "devbuild": "run-s build:css react-scripts:build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "cross-env NODE_ENV=production postcss src/styles/tailwind.css -o src/styles/index.css",

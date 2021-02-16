@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { QueryObserverResult, RefetchOptions, useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
@@ -10,6 +9,7 @@ import {
 import { baxios } from 'src/utils/api_axios'
 import Create from './Create'
 import Dialog from './Dialog'
+import Loading from './Loading'
 
 export interface IProjects {}
 
@@ -18,14 +18,16 @@ const fetchProjects = async () => {
   return response.data
 }
 
-const Projects: React.FC<IProjects> = ({}) => {
-  const { data, refetch } = useQuery<ProjectCreateResponse>(
+const Projects: React.FC<IProjects> = () => {
+  const { data, refetch, isFetching } = useQuery<ProjectCreateResponse>(
     'FETCH_PROJECTS',
     fetchProjects
   )
 
   const [hidden, setHidden] = useState(true)
   const [hiddenCreate, setHiddenCreate] = useState(true)
+
+  if (isFetching) return <Loading />
 
   if (data?.error) return <div>Something went wrong...</div>
 
