@@ -7,7 +7,6 @@ import Loading from './Loading'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import Snackbar from './Snackbar'
-import { sleep } from '../utils/common'
 
 export interface IProject {}
 

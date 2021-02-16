@@ -40,10 +40,10 @@ const Create: React.FC<ICreate> = ({
     initialValues: {
       title: '',
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       refetch()
       formik.resetForm()
-      refetchProjects()
+      await refetchProjects()
       setHiddenCreate(true)
     },
     validationSchema: formSchema,
