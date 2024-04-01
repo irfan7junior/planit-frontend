@@ -1,21 +1,21 @@
-import { InitialStateType } from 'src/context'
-import { IUser } from '../context/index'
+import { InitialStateType } from "src/context"
+import { IUser } from "../context/index"
 
 export type Action = {
-  type: 'SET_USER'
-  payload: IUser
+    type: "SET_USER"
+    payload: IUser
 }
 
 export const reducer = (
-  state: InitialStateType,
-  action: Action
+    state: InitialStateType,
+    action: Action,
 ): InitialStateType => {
-  switch (action.type) {
-    case 'SET_USER': {
-      return {
-        ...state,
-        user: action.payload,
-      }
+    switch (action.type) {
+        case "SET_USER": {
+            return {
+                ...state,
+                user: action.payload,
+            }
+        }
     }
-  }
 }
